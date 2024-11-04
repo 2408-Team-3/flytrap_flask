@@ -3,6 +3,7 @@ import requests
 from datetime import datetime
 from typing import Dict
 from flask import Flask
+from flytrap import FlytrapError
 
 class Flytrap:
     def __init__(self, config: Dict[str, str]) -> None:
@@ -62,9 +63,9 @@ class Flytrap:
 
         try:
             print("[flytrap] Sending error to the backend...")
-            response = requests.post(self.api_endpoint, json={"data": data}, headers=headers)
+            response = requests.post(f"{self.api_endpoint}/api/errors", json={"data": data}, headers=headers)
             response.raise_for_status()
             print("[flytrap]", response.status_code, response.text)
         except requests.RequestException as e:
             print(f"[flytrap] An error occurred sending error data: %s", e)
-            # Raise a new FlytrapError?
+            raise FlytrapError("Failed to send error data to Flytrap API.", e)
