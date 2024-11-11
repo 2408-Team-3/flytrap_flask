@@ -13,21 +13,19 @@ class Flytrap:
 
         :param config: Dictionary containing 'project_id', 'api_endpoint', and 'api_key'.
         """
-        sys.excepthook = self.global_exception_handler
+        sys.excepthook = self.system_exception_handler
         self.project_id: str = config.get("project_id")
         self.api_endpoint: str = config.get("api_endpoint")
         self.api_key: str = config.get("api_key")
     
-    def global_exception_handler(self, exc_type, exc_value, exc_traceback):
+    def system_exception_handler(self, exc_type, exc_value, exc_traceback):
+        # Allow user to stop the program with keyboard interrupt
         if issubclass(exc_type, KeyboardInterrupt):
             sys.__excepthook__(exc_type, exc_value, exc_traceback)
             return
 
-        # Capture any uncaught exceptions in ErrorMonitor
-        stack_trace = ''.join(traceback.format_exception(exc_type, exc_value, exc_traceback))
         self.timestamp = datetime.now().astimezone()
-        self.capture_exception(exc_value, exc_traceback)  # Pass the traceback here
-        print(f"Global exception handler stack trace: {stack_trace}")
+        self.capture_exception(exc_value)
 
     def setup_flask_error_handler(self, app: Flask) -> None:
         """
