@@ -1,5 +1,6 @@
 import traceback
 import requests
+import sys
 from datetime import datetime
 from typing import Dict
 from flask import Flask
@@ -12,9 +13,21 @@ class Flytrap:
 
         :param config: Dictionary containing 'project_id', 'api_endpoint', and 'api_key'.
         """
+        sys.excepthook = self.global_exception_handler
         self.project_id: str = config.get("project_id")
         self.api_endpoint: str = config.get("api_endpoint")
         self.api_key: str = config.get("api_key")
+    
+    def global_exception_handler(self, exc_type, exc_value, exc_traceback):
+        if issubclass(exc_type, KeyboardInterrupt):
+            sys.__excepthook__(exc_type, exc_value, exc_traceback)
+            return
+
+        # Capture any uncaught exceptions in ErrorMonitor
+        stack_trace = ''.join(traceback.format_exception(exc_type, exc_value, exc_traceback))
+        self.timestamp = datetime.now().astimezone()
+        self.capture_exception(exc_value, exc_traceback)  # Pass the traceback here
+        print(f"Global exception handler stack trace: {stack_trace}")
 
     def setup_flask_error_handler(self, app: Flask) -> None:
         """
