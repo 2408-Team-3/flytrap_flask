@@ -10,7 +10,5 @@ def setup_flask_error_handler(app: Flask) -> None:
             "path": request.path,
         }
 
-        print('req info')
-        print(req_info)
         log_error(error, handled=False, req=req_info)
         raise error

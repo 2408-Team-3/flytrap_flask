@@ -22,8 +22,6 @@ def log_error(
 
     config = get_config()
     stack_frames = parse_stack_trace(error)
-    print('stack frames:')
-    print(stack_frames)
 
     code_contexts: List[dict] = []
     if config.get("include_context", True) and stack_frames:
@@ -35,7 +33,6 @@ def log_error(
                 code_contexts.append({
                     "file": frame["file"],
                     "line": frame["line"],
-                    "column": frame["column"],
                     "context": context,
                 })
 
