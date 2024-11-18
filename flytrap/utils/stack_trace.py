@@ -15,7 +15,7 @@ def parse_stack_trace(error: Exception) -> list[dict] | None:
     for line in stack_lines:
         match = re.match(pattern, line)
         if match:
-            file, line_number = match.groups()
+            file, line_number, _ = match.groups()
             stack_frames.append({
                 'file': file,
                 'line': int(line_number),
