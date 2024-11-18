@@ -7,6 +7,8 @@ from ..utils.stack_trace import parse_stack_trace
 from ..utils.file_reader import read_source_file
 from ..utils.code_context import get_code_context
 from ..utils.exceptions import FlytrapError
+from ..utils.ip_info import get_client_ip
+from ..utils.system_info import get_system_details
 
 
 def log_error(
@@ -36,6 +38,10 @@ def log_error(
                     "context": context,
                 })
 
+    ip = get_client_ip()
+    system_details = get_system_details()
+    runtime, os = system_details["runtime"], system_details["os"]
+
     data = {
         "error": {
             "name": type(error).__name__,
@@ -48,6 +54,9 @@ def log_error(
         "project_id": config["project_id"],
         "method": req["method"] if req else None,
         "path": req["path"] if req else None,
+        "ip": ip,
+        "os": os,
+        "runtime": runtime,
     }
 
     try:
