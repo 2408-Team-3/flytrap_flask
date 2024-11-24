@@ -60,14 +60,11 @@ def log_error(
     }
 
     try:
-        print("[flytrap] Sending error to backend...")
         response = requests.post(
             f"{config['api_endpoint']}/api/errors",
             json={"data": data},
             headers={"x-api-key": config["api_key"]},
         )
         response.raise_for_status()
-        print("[flytrap]", response.status_code, response.text)
-    except requests.RequestException as e:
-        print(f"[flytrap] Failed to send error data: {e}")
-        raise FlytrapError("Failed to send error data to Flytrap API.", e)
+    except requests.RequestException:
+        return
