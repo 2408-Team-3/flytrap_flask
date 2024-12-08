@@ -16,7 +16,7 @@ def log_error(
     handled: bool,
     req: Optional[Dict] = None
 ) -> None:
-    """Logs the error and sends it to the backend."""
+    """Logs an error to the Flytrap backend."""
     from ..config import get_config
 
     if not error:

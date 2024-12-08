@@ -109,10 +109,10 @@ For full **local** integration with the Flytrap architecture:
 1. **Install the Flytrap API:** Follow the [Flytrap API Repository setup guide](https://github.com/getflytrap/flytrap_api).
 2. **Install the Flytrap Processor:** Refer to the [Flytrap Processor Repository](https://github.com/getflytrap/flytrap_processor) for instructions.
 3. **View Errors in the Dashboard:** Set up the [Flytrap Dashboard](https://github.com/getflytrap/flytrap_ui) to view and manage reported errors.
-4. **Integrate the Flytrap SDK in your project**
+4. **Integrate the Flytrap SDK in your project.**
 
 ### Testing the Complete Setup
-1. Trigger errors or promise rejections in your application integrated with a Flytrap SDK.
+1. Trigger errors in your application integrated with a Flytrap SDK.
 2. Confirm that errors are logged by checking:
   - Flytrap Processor Logs: Ensure errors are processed correctly.
   - Flytrap Dashboard: View processed errors, including stack traces and context.

@@ -10,7 +10,6 @@ def system_exception_handler(exc_type, exc_value, exc_traceback):
         sys.__excepthook__(exc_type, exc_value, exc_traceback)
         return
 
-    # Handle and log the error here
     timestamp = datetime.now().astimezone()
     log_error(exc_value, timestamp)
 
