@@ -2,7 +2,7 @@ import sys
 import platform
 
 def get_system_details() -> str:
-    """Returns the os and runtime in a user-friendly format."""
+    """Retrieves system details, including the operating system and runtime information."""
     os_name = platform.system()
     os_version = platform.release()
     return {
