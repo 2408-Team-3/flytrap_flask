@@ -1,11 +1,11 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
-    name='flytrap_flask',
-    version='0.1.1',
+    name="flytrap_flask",
+    version="0.1.1",
     install_requires=[
-      'Flask',
-      'requests',
+        "Flask",
+        "requests",
     ],
-    python_requires='>=3.6'
+    python_requires=">=3.6",
 )
