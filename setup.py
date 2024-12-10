@@ -9,7 +9,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="flytrap_flask",
-    version="0.1.1",
+    version="1.0.1",
     long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/getflytrap/flytrap_flask",
