@@ -1,5 +1,6 @@
 import json
 
+
 def get_code_context(source: str, line_number: int, context_lines: int = 5) -> str:
     """Gets the surrounding context lines from the source code."""
     lines = source.split("\n")

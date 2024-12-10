@@ -1,21 +1,15 @@
 import traceback
 import requests
-from flask import Request
 from datetime import datetime
 from typing import Optional, List, Dict
 from ..utils.stack_trace import parse_stack_trace
 from ..utils.file_reader import read_source_file
 from ..utils.code_context import get_code_context
-from ..utils.exceptions import FlytrapError
 from ..utils.ip_info import get_client_ip
 from ..utils.system_info import get_system_details
 
 
-def log_error(
-    error: Exception,
-    handled: bool,
-    req: Optional[Dict] = None
-) -> None:
+def log_error(error: Exception, handled: bool, req: Optional[Dict] = None) -> None:
     """Logs an error to the Flytrap backend."""
     from ..config import get_config
 
@@ -32,11 +26,13 @@ def log_error(
 
             if source:
                 context = get_code_context(source, frame["line"])
-                code_contexts.append({
-                    "file": frame["file"],
-                    "line": frame["line"],
-                    "context": context,
-                })
+                code_contexts.append(
+                    {
+                        "file": frame["file"],
+                        "line": frame["line"],
+                        "context": context,
+                    }
+                )
 
     ip = get_client_ip()
     system_details = get_system_details()

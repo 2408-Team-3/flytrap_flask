@@ -8,6 +8,8 @@ This guide will walk you through setting up the Flytrap Flask SDK in your projec
 
 To learn more about Flytrap, check out our [case study](https://getflytrap.github.io/).
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## 🚀 Getting Started
 
 To start using Flytrap in your project:
@@ -23,6 +25,8 @@ Install the Flytrap Flask SDK via pip:
 ```bash
 pip install flytrap_flask
 ```
+
+For more details about the package, visit the [Flytrap Flask SDK on PyPi](https://pypi.org/project/flytrap-flask/).
 
 ## 🛠️ Usage
 1. **Initialize Flytrap:** In your main application file (e.g., app.py), import the Flytrap module and initialize it with your project credentials:
